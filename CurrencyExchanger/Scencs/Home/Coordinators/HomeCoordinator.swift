@@ -12,7 +12,6 @@ protocol HomeCoordinatorProtocol {
 }
 
 final class HomeCoordinator: HomeCoordinatorProtocol {
-    
     weak var navigator: UINavigationController?
 
 }

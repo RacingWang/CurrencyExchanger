@@ -29,7 +29,7 @@ extension ListResponse: Decodable {
 struct LiveResponse {
     let result: Bool
     let source: String
-    let quotes: [Quote]
+    let quotes: [String: Double]
 }
 
 extension LiveResponse: Decodable {
@@ -43,7 +43,6 @@ extension LiveResponse: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         result = container.decodeSafely(.result) ?? false
         source = container.decodeSafely(.source) ?? ""
-        let quotesDict: [String: Double] = container.decodeSafely(.quotes) ?? [:]
-        quotes = quotesDict.map{ Quote(code: $0, rate: $1) }
+        quotes = Dictionary(uniqueKeysWithValues: (container.decodeSafely(.quotes) ?? [String: Double]()).map{ (String($0.dropFirst(3)), $1) })
     }
 }

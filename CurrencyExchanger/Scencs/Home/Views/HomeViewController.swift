@@ -9,13 +9,12 @@ import UIKit
 import SnapKit
 
 class HomeViewController: UIViewController {
-    
     private lazy var amountTextField: UITextField = {
         let textField = UITextField()+
             .borderStyle(.roundedRect)
             .textAlignment(.right)
             .keyboardType(.decimalPad)
-            .text("0")-
+            .text(viewModel.amountText)-
         textField.addTarget(self,
                             action: #selector(textFieldDidChange),
                             for: .editingChanged)
@@ -29,10 +28,10 @@ class HomeViewController: UIViewController {
         let textField = UITextField()+
             .textAlignment(.right)
             .borderStyle(.roundedRect)
-            .text(viewModel.selectCurrency(atRow: 0))-
+            .text(viewModel.selectedCurrencyText)-
         textField.bind(pickerView: picker) { [unowned self] index in
             guard index >= 0 else { return }
-            textField.text = self.viewModel.selectCurrency(atRow: index)
+            self.viewModel.selectCurrency(atRow: index)
         }
         return textField
     }()
@@ -41,8 +40,8 @@ class HomeViewController: UIViewController {
             .minimumInteritemSpacing(8)
             .minimumLineSpacing(8)
             .itemSize(CGSize(width: 100, height: 100))-
-//            .sectionInset(UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16))-
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)+
+        let collectionView = UICollectionView(frame: .zero,
+                                              collectionViewLayout: layout)+
             .showsVerticalScrollIndicator(false)
             .showsHorizontalScrollIndicator(false)
             .backgroundColor(.clear)
@@ -65,14 +64,13 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
         setupUIComponents()
         setupUIAttributes()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+    
         navigationController?.setNavigationBarHidden(true,
                                                      animated: animated)
     }
@@ -164,12 +162,14 @@ extension HomeViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView,
                     titleForRow row: Int,
                     forComponent component: Int) -> String? {
-        return viewModel.currencyCode(forRow: row)
+        return viewModel.currency(forRow: row)
     }
 }
 
 extension HomeViewController: HomeViewModelDelegate {
     func homeViewModelDidUpdate(_ viewModel: HomeViewModelProtocol) {
+        amountTextField.text = viewModel.amountText
+        currencyTextField.text = viewModel.selectedCurrencyText
         collectionView.reloadData()
     }
 }

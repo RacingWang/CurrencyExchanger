@@ -19,20 +19,17 @@
 		C16546A92589F0F7004B10FA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16546A82589F0F7004B10FA /* HomeViewModel.swift */; };
 		C16546B42589F1F5004B10FA /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16546B32589F1F5004B10FA /* Routable.swift */; };
 		C16546B82589F26E004B10FA /* FluentInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16546B72589F26E004B10FA /* FluentInterface.swift */; };
-		C16546C82589F511004B10FA /* UIView+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16546C02589F511004B10FA /* UIView+Loading.swift */; };
 		C16546C92589F511004B10FA /* RegisterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16546C12589F511004B10FA /* RegisterCell.swift */; };
-		C16546CA2589F511004B10FA /* String+Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16546C22589F511004B10FA /* String+Localizable.swift */; };
 		C16546CB2589F511004B10FA /* DequeueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16546C32589F511004B10FA /* DequeueCell.swift */; };
 		C16546CC2589F511004B10FA /* KeyedEncodingContainer+EncodeSafely.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16546C42589F511004B10FA /* KeyedEncodingContainer+EncodeSafely.swift */; };
 		C16546CD2589F511004B10FA /* UITextField+Picker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16546C52589F511004B10FA /* UITextField+Picker.swift */; };
 		C16546CE2589F511004B10FA /* KeyedDecodingContainer+DecodeSafely.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16546C62589F511004B10FA /* KeyedDecodingContainer+DecodeSafely.swift */; };
 		C16546D42589FB30004B10FA /* QuoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16546D32589FB30004B10FA /* QuoteCell.swift */; };
-		C16546D7258A16BF004B10FA /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16546D6258A16BF004B10FA /* Storage.swift */; };
-		C16546DA258A16DF004B10FA /* Preference.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16546D9258A16DE004B10FA /* Preference.swift */; };
 		C16546E1258A1728004B10FA /* CurrencyRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16546E0258A1728004B10FA /* CurrencyRouter.swift */; };
 		C16546E7258A1E41004B10FA /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16546E6258A1E41004B10FA /* Currency.swift */; };
 		C16546EA258A1E4A004B10FA /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16546E9258A1E4A004B10FA /* Quote.swift */; };
 		C16546EE258A1F07004B10FA /* CurrencyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16546ED258A1F07004B10FA /* CurrencyResponse.swift */; };
+		C1A81C44258A55650012FDE0 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A81C43258A55650012FDE0 /* CurrencyService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,20 +45,17 @@
 		C16546A82589F0F7004B10FA /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		C16546B32589F1F5004B10FA /* Routable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
 		C16546B72589F26E004B10FA /* FluentInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FluentInterface.swift; sourceTree = "<group>"; };
-		C16546C02589F511004B10FA /* UIView+Loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Loading.swift"; sourceTree = "<group>"; };
 		C16546C12589F511004B10FA /* RegisterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterCell.swift; sourceTree = "<group>"; };
-		C16546C22589F511004B10FA /* String+Localizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localizable.swift"; sourceTree = "<group>"; };
 		C16546C32589F511004B10FA /* DequeueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DequeueCell.swift; sourceTree = "<group>"; };
 		C16546C42589F511004B10FA /* KeyedEncodingContainer+EncodeSafely.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KeyedEncodingContainer+EncodeSafely.swift"; sourceTree = "<group>"; };
 		C16546C52589F511004B10FA /* UITextField+Picker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Picker.swift"; sourceTree = "<group>"; };
 		C16546C62589F511004B10FA /* KeyedDecodingContainer+DecodeSafely.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KeyedDecodingContainer+DecodeSafely.swift"; sourceTree = "<group>"; };
 		C16546D32589FB30004B10FA /* QuoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCell.swift; sourceTree = "<group>"; };
-		C16546D6258A16BF004B10FA /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
-		C16546D9258A16DE004B10FA /* Preference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preference.swift; sourceTree = "<group>"; };
 		C16546E0258A1728004B10FA /* CurrencyRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRouter.swift; sourceTree = "<group>"; };
 		C16546E6258A1E41004B10FA /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		C16546E9258A1E4A004B10FA /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		C16546ED258A1F07004B10FA /* CurrencyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyResponse.swift; sourceTree = "<group>"; };
+		C1A81C43258A55650012FDE0 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +98,6 @@
 				C16546752589EE27004B10FA /* AppDelegate.swift */,
 				C16546772589EE27004B10FA /* SceneDelegate.swift */,
 				C165469E2589F087004B10FA /* RootCoordinator.swift */,
-				C16546D9258A16DE004B10FA /* Preference.swift */,
 				C165467E2589EE2A004B10FA /* Assets.xcassets */,
 				C16546802589EE2A004B10FA /* LaunchScreen.storyboard */,
 				C16546832589EE2A004B10FA /* Info.plist */,
@@ -151,6 +144,7 @@
 		C16546922589EFC8004B10FA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C1A81C43258A55650012FDE0 /* CurrencyService.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -202,7 +196,6 @@
 			isa = PBXGroup;
 			children = (
 				C16546B72589F26E004B10FA /* FluentInterface.swift */,
-				C16546D6258A16BF004B10FA /* Storage.swift */,
 			);
 			path = MISC;
 			sourceTree = "<group>";
@@ -214,9 +207,7 @@
 				C16546C32589F511004B10FA /* DequeueCell.swift */,
 				C16546C62589F511004B10FA /* KeyedDecodingContainer+DecodeSafely.swift */,
 				C16546C42589F511004B10FA /* KeyedEncodingContainer+EncodeSafely.swift */,
-				C16546C22589F511004B10FA /* String+Localizable.swift */,
 				C16546C52589F511004B10FA /* UITextField+Picker.swift */,
-				C16546C02589F511004B10FA /* UIView+Loading.swift */,
 			);
 			path = Extenstions;
 			sourceTree = "<group>";
@@ -308,7 +299,6 @@
 			files = (
 				C16546C92589F511004B10FA /* RegisterCell.swift in Sources */,
 				C16546B82589F26E004B10FA /* FluentInterface.swift in Sources */,
-				C16546C82589F511004B10FA /* UIView+Loading.swift in Sources */,
 				C16546CD2589F511004B10FA /* UITextField+Picker.swift in Sources */,
 				C16546762589EE27004B10FA /* AppDelegate.swift in Sources */,
 				C16546CB2589F511004B10FA /* DequeueCell.swift in Sources */,
@@ -324,10 +314,8 @@
 				C16546B42589F1F5004B10FA /* Routable.swift in Sources */,
 				C16546E7258A1E41004B10FA /* Currency.swift in Sources */,
 				C16546EE258A1F07004B10FA /* CurrencyResponse.swift in Sources */,
-				C16546D7258A16BF004B10FA /* Storage.swift in Sources */,
-				C16546DA258A16DF004B10FA /* Preference.swift in Sources */,
+				C1A81C44258A55650012FDE0 /* CurrencyService.swift in Sources */,
 				C16546EA258A1E4A004B10FA /* Quote.swift in Sources */,
-				C16546CA2589F511004B10FA /* String+Localizable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

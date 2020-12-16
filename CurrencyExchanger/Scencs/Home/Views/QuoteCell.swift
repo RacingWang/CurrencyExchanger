@@ -9,21 +9,18 @@ import UIKit
 import SnapKit
 
 class QuoteCell: UICollectionViewCell {
-    
     private let currencyLabel: UILabel = {
         let label = UILabel()+
             .font(.boldSystemFont(ofSize: 14))
             .minimumScaleFactor(0.5)-
         return label
     }()
-    
     private let rateLabel: UILabel = {
         let label = UILabel()+
             .font(.systemFont(ofSize: 12))
             .minimumScaleFactor(0.5)-
         return label
     }()
-    
     private let amountLabel: UILabel = {
         let label = UILabel()+
             .font(.systemFont(ofSize: 12))

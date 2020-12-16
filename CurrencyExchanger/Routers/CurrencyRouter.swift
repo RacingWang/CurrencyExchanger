@@ -9,9 +9,8 @@ import Foundation
 import Alamofire
 
 enum CurrencyRouter: Routable {
-    
     case list
-    case live(source: String)
+    case live
 
     var method: HTTPMethod {
         switch self {
@@ -19,7 +18,6 @@ enum CurrencyRouter: Routable {
             return .get
         }
     }
- 
     var path: String {
         switch self {
         case .list:
@@ -31,11 +29,8 @@ enum CurrencyRouter: Routable {
     
     func encodeParameters(into request: URLRequest) throws -> URLRequest {
         switch self {
-        case .list:
+        case .list, .live:
             return request
-        case let .live(source):
-            return try parameterEncoder.encode(["source": source],
-                                               into: request)
         }
     }
 }

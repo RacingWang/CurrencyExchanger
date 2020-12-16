@@ -16,13 +16,14 @@ protocol HomeViewModelProtocol {
     subscript(_ index: Int) -> QuoteCellViewModel { get }
 
     var delegate: HomeViewModelDelegate? { get set }
+    var amountText: String? { get }
+    var selectedCurrencyText: String? { get }
     var numberOfCurrencies: Int { get }
     var numberOfQuotes: Int { get }
 
-    func currencyCode(forRow row: Int) -> String
-    func selectCurrency(atRow row: Int) -> String
+    func currency(forRow row: Int) -> String
+    func selectCurrency(atRow row: Int)
     func update(amount: String)
-    func fetchQuotes()
 }
 
 final class HomeViewModel: HomeViewModelProtocol {
@@ -30,70 +31,72 @@ final class HomeViewModel: HomeViewModelProtocol {
         let quote = quotes[index]
         return QuoteCellViewModel(quote: quote, amount: amount)
     }
+    
     weak var delegate: HomeViewModelDelegate?
+    var amountText: String? {
+        "\(amount)"
+    }
+    var selectedCurrencyText: String? {
+        selectedCurrency?.code ?? "-"
+    }
     var numberOfCurrencies: Int {
         currencies.count
     }
     var numberOfQuotes: Int {
         quotes.count
     }
+    private lazy var currencyService: CurrencyServiceProtocol = {
+        let service = CurrencyService()+
+            .delegate(self)-
+        return service
+    }()
     private var amount: Double = 0 {
         didSet {
             delegate?.homeViewModelDidUpdate(self)
         }
     }
-    private var currentCurrencyCode: String? {
-        didSet {
-            fetchQuotes()
+    private var selectedCurrency: Currency? {
+        willSet {
+            if let currency = newValue {
+                quotes = currencyService.getQuotes(byCurrency: currency)
+            } else {
+                quotes = [Quote]()
+            }
         }
-    }
-    private var currencies: [Currency] {
-        Preference.supportedCurrencies
-    }
-    private var quotes = [Quote]() {
         didSet {
             delegate?.homeViewModelDidUpdate(self)
         }
     }
-    private var fetchingRequest: DataRequest?
+    private var currencies: [Currency] {
+        currencyService.supportedCurrencies
+    }
+    private var quotes = [Quote]()
     private let coordinator: HomeCoordinatorProtocol
     
     init(coordinator: HomeCoordinatorProtocol) {
         self.coordinator = coordinator
+        
+        currencyService.fetch()
     }
     
-    func currencyCode(forRow row: Int) -> String {
+    func currency(forRow row: Int) -> String {
         currencies[row].code
     }
     
-    func selectCurrency(atRow row: Int) -> String {
-        let currencyCode = self.currencyCode(forRow: row)
-        currentCurrencyCode = currencyCode
-        return currencyCode
+    func selectCurrency(atRow row: Int) {
+        let currency = currencies[row]
+        selectedCurrency = currency
     }
     
     func update(amount: String) {
         guard let amount = Double(amount) else { return }
         self.amount = amount
     }
-    
-    func fetchQuotes() {
-        guard let currentCurrencyCode = currentCurrencyCode else { return }
-        
-        if let fetchingRequest = fetchingRequest {
-            fetchingRequest.cancel()
-        }
-        
-        fetchingRequest = AF.request(CurrencyRouter.live(source: "USD"))
-            .validate()
-            .responseDecodable(of: LiveResponse.self, completionHandler: { response in
-                switch response.result {
-                case let .success(resp):
-                    self.quotes = resp.quotes
-                case let .failure(error):
-                    print("error: \(error)")
-                }
-        })
+}
+
+extension HomeViewModel: CurrencyServiceDelegate {
+    func currencyServiceDidUpdate(_ service: CurrencyServiceProtocol) {
+        selectedCurrency = service.supportedCurrencies.first
     }
 }
 
@@ -106,7 +109,6 @@ struct QuoteCellViewModel {
          amount: Double) {
         self.currency = quote.code
         self.rate = "\(quote.rate)"
-        self.amount = "\(quote.rate * amount)"
+        self.amount = "\((quote.rate * amount * 100).rounded() / 100)"
     }
-    
 }
