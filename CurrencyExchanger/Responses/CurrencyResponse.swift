@@ -28,21 +28,18 @@ extension ListResponse: Decodable {
 
 struct LiveResponse {
     let result: Bool
-    let source: String
     let quotes: [String: Double]
 }
 
 extension LiveResponse: Decodable {
     enum CodingKeys: String, CodingKey {
         case result = "success"
-        case source
         case quotes
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         result = container.decodeSafely(.result) ?? false
-        source = container.decodeSafely(.source) ?? ""
         quotes = Dictionary(uniqueKeysWithValues: (container.decodeSafely(.quotes) ?? [String: Double]()).map{ (String($0.dropFirst(3)), $1) })
     }
 }
