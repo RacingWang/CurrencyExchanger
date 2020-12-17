@@ -14,7 +14,6 @@ extension UITextField {
 
     struct AssociatedKeys {
         static var pickerViewCompletion = "pickerViewCompletion"
-        static var datePickerCompletion = "datePickerCompletion"
     }
     
     private var pickerViewCompletion: PickerViewCompletion? {
@@ -27,7 +26,8 @@ extension UITextField {
         }
     }
     
-    func bind(pickerView: UIPickerView, completion: @escaping PickerViewCompletion) {
+    func bind(pickerView: UIPickerView,
+              completion: @escaping PickerViewCompletion) {
         pickerViewCompletion = completion
         inputView = pickerView
         setupToolBar()
@@ -37,12 +37,13 @@ extension UITextField {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         
-        let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(title: "done",
+        let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
+                                       target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "Done",
                                          style: .plain,
                                          target: self,
                                          action: #selector(onPressPickerDoneButton(_:)))
-        let cancelButton = UIBarButtonItem(title: "cancel",
+        let cancelButton = UIBarButtonItem(title: "Cancel",
                                            style: .plain,
                                            target: self,
                                            action: #selector(onPressPickerCancelButton(_:)))
@@ -55,9 +56,7 @@ extension UITextField {
         if let picker = inputView as? UIPickerView {
             let index = picker.selectedRow(inComponent: 0)            
             pickerViewCompletion?(index)
-            
         }
-
         resignFirstResponder()
     }
     
