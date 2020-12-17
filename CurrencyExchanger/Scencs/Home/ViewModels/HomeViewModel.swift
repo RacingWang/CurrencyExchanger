@@ -76,7 +76,7 @@ final class HomeViewModel: HomeViewModelProtocol {
     init(coordinator: HomeCoordinatorProtocol) {
         self.coordinator = coordinator
         
-        currencyService.fetch()
+        currencyService.activate()
     }
     
     func currency(forRow row: Int) -> String {

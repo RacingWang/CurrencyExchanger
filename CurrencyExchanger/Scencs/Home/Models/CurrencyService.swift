@@ -16,7 +16,7 @@ protocol CurrencyServiceProtocol {
     var delegate: CurrencyServiceDelegate? { get set }
     var supportedCurrencies: [Currency] { get }
     
-    func fetch()
+    func activate()
     func getQuotes(byCurrency currency: Currency) -> [Quote]
 }
 
@@ -24,8 +24,18 @@ final class CurrencyService: CurrencyServiceProtocol {
     weak var delegate: CurrencyServiceDelegate?
     private(set) var supportedCurrencies = [Currency]()
     private var quotesTable = [String: Double]()
+    private var refreshTimer: Timer?
+
+    deinit {
+        invalidateTimer()
+    }
     
-    func fetch() {
+    func activate() {
+        fetch()
+        setupTimer()
+    }
+    
+    private func fetch() {
         let dispatchGroup = DispatchGroup()
 
         dispatchGroup.enter()
@@ -62,5 +72,21 @@ final class CurrencyService: CurrencyServiceProtocol {
     func getQuotes(byCurrency currency: Currency) -> [Quote] {
         guard let usdRate = quotesTable[currency.code] else { return [] }
         return quotesTable.map{ Quote(code: $0, rate: (1 / usdRate * $1 * 1000).rounded() / 1000) }
+    }
+    
+    private func setupTimer() {
+        invalidateTimer()
+        let refreshTimer = Timer(timeInterval: 60 * 30,
+                                 repeats: true,
+                                 block: { [unowned self] Timer in
+            self.fetch()
+        })
+        RunLoop.main.add(refreshTimer, forMode: .common)
+        self.refreshTimer = refreshTimer
+    }
+    
+    private func invalidateTimer() {
+        guard let timer = refreshTimer else { return }
+        timer.invalidate()
     }
 }
