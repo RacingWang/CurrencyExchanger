@@ -18,6 +18,7 @@ final class RootCoordinator: RootCoordinatorProtocol {
         let viewModel = HomeViewModel(coordinator: coordinator)
         let viewController = HomeViewController(viewModel: viewModel)
         let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.navigationBar.isHidden = true
         coordinator.navigator = navigationController
         viewModel.delegate = viewController
         

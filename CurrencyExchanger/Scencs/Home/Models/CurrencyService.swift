@@ -71,7 +71,7 @@ final class CurrencyService: CurrencyServiceProtocol {
     
     func getQuotes(byCurrency currency: Currency) -> [Quote] {
         guard let usdRate = quotesTable[currency.code] else { return [] }
-        return quotesTable.map{ Quote(code: $0, rate: (1 / usdRate * $1 * 1000).rounded() / 1000) }
+        return quotesTable.map{ Quote(code: $0, rate: (1 / usdRate * $1 * 100000).rounded() / 100000) }
     }
     
     private func setupTimer() {

@@ -68,20 +68,6 @@ class HomeViewController: UIViewController {
         setupUIAttributes()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    
-        navigationController?.setNavigationBarHidden(true,
-                                                     animated: animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        navigationController?.setNavigationBarHidden(false,
-                                                     animated: animated)
-    }
-    
     private func setupUIComponents() {
         view.addSubview(amountTextField)
         amountTextField.snp.makeConstraints { make in
@@ -129,7 +115,6 @@ class HomeViewController: UIViewController {
         guard let amount = amountTextField.text else { return }
         viewModel.update(amount: amount)
     }
-
 }
 
 extension HomeViewController: UICollectionViewDataSource {

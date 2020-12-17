@@ -38,11 +38,11 @@ extension UITextField {
         toolBar.sizeToFit()
         
         let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(title: "done".localized,
+        let doneButton = UIBarButtonItem(title: "done",
                                          style: .plain,
                                          target: self,
                                          action: #selector(onPressPickerDoneButton(_:)))
-        let cancelButton = UIBarButtonItem(title: "cancel".localized,
+        let cancelButton = UIBarButtonItem(title: "cancel",
                                            style: .plain,
                                            target: self,
                                            action: #selector(onPressPickerCancelButton(_:)))
